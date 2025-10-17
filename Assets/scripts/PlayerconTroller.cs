@@ -1,29 +1,31 @@
+using System.IO;
 using UnityEngine;
 
-public class PlayerconTroller : MonoBehaviour
-{   public float speed =  5.0f;
-    public float horisontalInput;
-    public float turnSpeed;
-  
-    
+public class PlayerController : MonoBehaviour
+{
+    public GameObject player;  
+    public float speed = 5.0f;
+    public Vector3 offset = new Vector3 (0, 5, -7);
+
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
-  
+
     // Update is called once per frame
     void Update()
+
     {
-        //muovere il bidone 
-        transform.Translate(Vector3.forward * Time.deltaTime * turnSpeed);
-        transform.Translate(Vector3.right*Time.deltaTime * turnSpeed);
-
-        
-        horisontalInput = Input.GetAxis("Horisontal");
-        transform.Translate(Vector3.right * Time.deltaTime * turnSpeed*horisontalInput);
-
-       
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
     }
-   
+
+    private void LateUpdate()
+    {
+        transform.position = player.transform.position + offset;
+    }
 }
+ 
